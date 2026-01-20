@@ -122,4 +122,6 @@ fornet.ovi@gmail.com
 
 The name of this project *zappp* is actually inspired from *Electro Wizard* Character in Clash Royale!
 
-![Electric Wizard pic](https://ik.imagekit.io/iamovi/zappp)
+<p align="center">
+  <img src="https://ik.imagekit.io/iamovi/zappp" width="400">
+</p>
