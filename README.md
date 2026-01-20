@@ -118,12 +118,8 @@ Ovi ren
 
 fornet.ovi@gmail.com
 
-## Changelog
+## Fun Facts
 
-### 1.0.0
-- Initial release
-- Static file serving
-- Live reload functionality
-- Directory listing
-- Command line options
-- Beautiful error pages
+The name of this project *zappp* is actually inspired from *Electro Wizard* Character in Clash Royale!
+
+![Electric Wizard pic](https://ik.imagekit.io/iamovi/zappp)
