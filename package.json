@@ -1,0 +1,37 @@
+{
+  "name": "zappp",
+  "version": "1.0.0",
+  "description": "A simple, fast static file server with live reload - VS Code Live Server clone",
+  "main": "src/index.js",
+  "bin": {
+    "zappp": "./bin/zappp.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "live-server",
+    "static-server",
+    "development-server",
+    "live-reload",
+    "hot-reload"
+  ],
+  "author": "Ovi ren",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "mime-types": "^2.1.35",
+    "ws": "^8.14.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamovi/zappp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iamovi/zappp/issues"
+  },
+  "homepage": "https://github.com/iamovi/zappp#readme"
+}

@@ -1,0 +1,25 @@
+# Test files
+test/
+*.test.js
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+docs/
+
+# Git
+.git/
+.gitignore
+
+# CI
+.github/
+.travis.yml
+
+# Misc
+.DS_Store
+Thumbs.db
+npm-debug.log*
