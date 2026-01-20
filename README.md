@@ -2,6 +2,8 @@
 
 A simple, fast static file server with live reload functionality - a complete VS Code Live Server clone.
 
+<img src="https://ik.imagekit.io/iamovi/zappp_main" width="300">
+
 ## Features
 
 - 🚀 Zero configuration - just run `zappp`
@@ -24,6 +26,12 @@ npm install -g zappp
 
 ```bash
 npm install zappp
+```
+
+### Use without installation 
+
+```bash
+npx zappp
 ```
 
 ## Usage
@@ -122,6 +130,4 @@ fornet.ovi@gmail.com
 
 The name of this project *zappp* is actually inspired from *Electro Wizard* Character in Clash Royale!
 
-<p align="center">
-  <img src="https://ik.imagekit.io/iamovi/zappp" width="200">
-</p>
+<img src="https://ik.imagekit.io/iamovi/zappp" width="300">
