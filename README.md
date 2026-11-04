@@ -1,4 +1,4 @@
-**Zappp** is a simple, fast static file server with live reload — a lightweight VS Code Live Server alternative for your terminal.
+**Zappp** is a simple, fast static file server with live reload and more.
 
 <img src="https://ik.imagekit.io/iamovi/zappp_main" width="300">
 
