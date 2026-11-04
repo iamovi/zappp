@@ -1,6 +1,6 @@
 {
   "name": "zappp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple, fast static file server with live reload - VS Code Live Server clone",
   "main": "src/index.js",
   "bin": {
@@ -16,7 +16,7 @@
     "live-reload",
     "hot-reload"
   ],
-  "author": "Ovi ren",
+  "author": "Hasan Ovi",
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"

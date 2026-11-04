@@ -1,18 +1,19 @@
-# Zappp ⚡
-
-A simple, fast static file server with live reload functionality - a complete VS Code Live Server clone.
+**Zappp** is a simple, fast static file server with live reload — a lightweight VS Code Live Server alternative for your terminal.
 
 <img src="https://ik.imagekit.io/iamovi/zappp_main" width="300">
 
 ## Features
 
-- 🚀 Zero configuration - just run `zappp`
-- 🔄 Live reload on file changes
-- 📁 Directory listing
-- 🌐 Network accessible
-- 🎨 Beautiful error pages
-- 📦 Lightweight and fast
-- 🔒 Security: prevents directory traversal attacks
+- **Zero configuration** — run `zappp` and start serving immediately
+- **Live reload** — watches files and reloads your browser on changes
+- **Smart reconnect** — reconnects cleanly without infinite reload loops if the server stops
+- **Modern dark UI** — clean, styled directory browser and error pages
+- **Terminal output** — timestamped, colored, and emoji-free event logs
+- **Network accessible** — displays both local and network URLs on startup
+- **Automatic update alerts** — checks for new npm releases in the background
+- **Security built-in** — robust directory traversal prevention
+
+---
 
 ## Installation
 
@@ -34,17 +35,19 @@ npm install zappp
 npx zappp
 ```
 
+---
+
 ## Usage
 
 ### Basic Usage
 
-Navigate to your project folder and run:
+Navigate to your project directory and run:
 
 ```bash
 zappp
 ```
 
-This will start the server on `http://localhost:3000`
+This starts the server on `http://localhost:3000`.
 
 ### Command Line Options
 
@@ -52,65 +55,60 @@ This will start the server on `http://localhost:3000`
 # Start server in current directory (default port 3000)
 zappp
 
-# Start with specific port
+# Start with a specific port
 zappp -p 8080
-
 zappp --port 8080
 
-# Start with specific host
-zappp -h 127.0.0.1
-
+# Bind to a specific host
 zappp --host 127.0.0.1
 
-# Open browser automatically
+# Automatically open in your default browser
 zappp -o
-
 zappp --open
 
-# Don't open browser (default behavior)
+# Disable opening browser
 zappp --no-browser
 
 # Serve a specific directory
-zappp path/to/folder
-
 zappp ./public
-
 zappp ../my-website
 
-# Show help
-zappp --help
-
 # Combine options
-zappp -p 8080 -o
+zappp ./dist -p 5000 -o
+zappp --host 127.0.0.1 -p 8080 -o
 
-zappp -port 8080 -open
+# Show version and check for updates
+zappp -v
+zappp --version
 
-zappp ./dist -p 5000 -o Serve dist folder on port 5000 and open browser
-
-zappp -h 0.0.0.0 -p 8000 -o
-
-# Version check & update
-zappp -v or zappp --version
-
-npm update -g zappp
+# Show help
+zappp -h
+zappp --help
 ```
 
-### Options
+---
+
+## Options Reference
 
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
-| `--port <number>` | `-p` | Port to use | 3000 |
-| `--host <host>` | `-h` | Host to use | 0.0.0.0 |
-| `--open` | `-o` | Open browser automatically | false |
-| `--no-browser` | | Don't open browser | |
-| `--help` | | Show help message | |
+| `--port <number>` | `-p` | Port to listen on | `3000` |
+| `--host <host>` | | Host to bind to | `0.0.0.0` |
+| `--open` | `-o` | Open default browser on startup | `false` |
+| `--no-browser` | | Do not open browser | `false` |
+| `--version` | `-v` | Show version and check for updates | |
+| `--help` | `-h` | Show help message | |
+
+---
 
 ## How It Works
 
-1. **Static File Serving**: Serves all static files (HTML, CSS, JS, images, etc.) from the current directory
-2. **Live Reload**: Watches for file changes and automatically reloads the browser
-3. **WebSocket Connection**: Uses WebSocket to communicate between server and browser
-4. **Directory Listing**: Shows a beautiful directory listing when no index.html is found
+1. **Static File Serving**: Serves HTML, CSS, JS, images, fonts, and assets from your selected directory.
+2. **WebSocket Live Reload**: Injects a lightweight reload client into served HTML pages.
+3. **File Watching**: Uses `chokidar` to track file additions, edits, and deletions in real-time.
+4. **Directory Listing**: Displays a clean, dark-mode file browser when a directory does not contain an `index.html`.
+
+---
 
 ## License
 
@@ -122,12 +120,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Author
 
-Ovi ren
-
-fornet.ovi@gmail.com
+**Hasan Ovi**  
+Email: [fornet.ovi@gmail.com](mailto:fornet.ovi@gmail.com)  
+GitHub: [@iamovi](https://github.com/iamovi)
 
 ## Fun Facts
 
-The name of this project *zappp* is actually inspired from *Electro Wizard* Character in Clash Royale!
-
-<img src="https://ik.imagekit.io/iamovi/zappp" width="300">
+The name of this project *zappp* is inspired by the *Electro Wizard* character from Clash Royale!
