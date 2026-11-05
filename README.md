@@ -1,7 +1,8 @@
+<img src="main.png" width="100">
+
 **Zappp** is a simple, fast static file server with live reload and more.
 
-<img src="https://ik.imagekit.io/iamovi/zappp_main" width="300">
-
+*Latest Version: 1.1.1*
 ## Features
 
 - **Zero configuration** — run `zappp` and start serving immediately
@@ -123,7 +124,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 **Hasan Ovi**  
 Email: [fornet.ovi@gmail.com](mailto:fornet.ovi@gmail.com)  
 GitHub: [@iamovi](https://github.com/iamovi)
-
-## Fun Facts
-
-The name of this project *zappp* is inspired by the *Electro Wizard* character from Clash Royale!

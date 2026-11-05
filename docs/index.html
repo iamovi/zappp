@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zappp Documentation</title>
+  <meta name="description" content="A simple, fast static file server with live reload functionality. VS Code Live Server clone for your terminal.">
+  <link rel="icon" type="image/png" sizes="32x32" href="main.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="main.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="main.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="site-header">
+    <div class="brand-wrap">
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="#" class="brand-title">
+        <img src="main.png" alt="Zappp" class="brand-icon-img">
+        <span>zappp<span class="accent">⚡</span></span>
+      </a>
+      <span class="brand-badge">v1.1.1</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Search Trigger -->
+      <button class="search-trigger" id="search-trigger" aria-label="Search documentation">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>Search docs...</span>
+        <span class="search-key">Ctrl K</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <button class="btn-icon" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle Theme">
+        <svg width="17" height="17" viewBox="0 0 24 24" id="theme-icon" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <!-- npm link -->
+      <a href="https://www.npmjs.com/package/zappp" target="_blank" rel="noopener noreferrer" class="btn-icon" title="npm package">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.13h13.74v13.74H15.42v-10.3H8.56v10.3H5.13V5.13z"/>
+        </svg>
+      </a>
+
+      <!-- GitHub link -->
+      <a href="https://github.com/iamovi/zappp" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub Repository">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Docs Layout Container -->
+  <div class="docs-layout">
+
+    <!-- Left Sticky Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-heading">Getting Started</div>
+        <ul class="sidebar-nav">
+          <li><a href="#overview" class="sidebar-link active">Overview</a></li>
+          <li><a href="#installation" class="sidebar-link">Installation</a></li>
+          <li><a href="#quick-start" class="sidebar-link">Quick Start</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-heading">Guides</div>
+        <ul class="sidebar-nav">
+          <li><a href="#basic-usage" class="sidebar-link">Basic Serving</a></li>
+          <li><a href="#serving-directories" class="sidebar-link">Custom Directory</a></li>
+          <li><a href="#port-and-host" class="sidebar-link">Port & Host</a></li>
+          <li><a href="#browser-launch" class="sidebar-link">Auto-Open Browser</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-heading">Reference</div>
+        <ul class="sidebar-nav">
+          <li><a href="#cli-options" class="sidebar-link">CLI Options</a></li>
+          <li><a href="#command-playground" class="sidebar-link">Command Builder</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-heading">Architecture</div>
+        <ul class="sidebar-nav">
+          <li><a href="#live-reload" class="sidebar-link">WebSocket Reload</a></li>
+          <li><a href="#smart-reconnect" class="sidebar-link">Smart Reconnect</a></li>
+          <li><a href="#directory-listing" class="sidebar-link">Directory Listing</a></li>
+          <li><a href="#update-checks" class="sidebar-link">Background Updates</a></li>
+          <li><a href="#security" class="sidebar-link">Path Security</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-group">
+        <div class="sidebar-heading">Project</div>
+        <ul class="sidebar-nav">
+          <li><a href="#troubleshooting" class="sidebar-link">Troubleshooting</a></li>
+          <li><a href="#license" class="sidebar-link">License</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Center Main Documentation Content -->
+    <main class="docs-content">
+
+      <!-- Hero Banner Section -->
+      <section id="overview" class="hero-banner">
+        <div class="hero-tag">
+          ⚡ ZERO CONFIG &middot; ULTRA-FAST &middot; LIVE RELOAD
+        </div>
+
+        <h1 class="hero-title">
+          Static file serving <br>
+          with <span class="highlight">instant live reload</span>
+        </h1>
+
+        <p class="hero-desc">
+          A lightweight VS Code Live Server alternative for your terminal. Pure Node.js, instant WebSocket auto-reload, built-in directory explorer, and traversal protection.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#installation" class="btn btn-primary">
+            Get Started
+          </a>
+          <a href="#command-playground" class="btn btn-secondary">
+            Command Builder
+          </a>
+          <a href="https://github.com/iamovi/zappp" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            GitHub
+          </a>
+        </div>
+
+        <!-- Terminal Output Simulation -->
+        <div class="terminal-box">
+          <div class="terminal-topbar">
+            <div class="terminal-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span class="terminal-badge">zappp terminal</span>
+          </div>
+          <div class="terminal-code">
+            <div><span class="term-accent">zappp</span>  <span class="term-muted">v1.1.0</span></div>
+            <div class="term-muted">────────────────────────────────────────────────</div>
+            <br>
+            <div><span class="term-muted">local   </span>  <span class="term-white">http://localhost:3000</span></div>
+            <div><span class="term-muted">network </span>  <span class="term-white">http://192.168.1.45:3000</span></div>
+            <div><span class="term-muted">root    </span>  <span class="term-muted">./public</span></div>
+            <br>
+            <div><span class="term-muted">ready in 12ms  ·  watching for changes  ·  ctrl+c to stop</span></div>
+            <div class="term-muted">────────────────────────────────────────────────</div>
+            <br>
+            <div><span class="term-muted">14:19:03</span>  <span class="term-muted">get    </span>  <span class="term-white">/index.html</span></div>
+            <div><span class="term-muted">14:19:12</span>  <span class="term-accent">changed</span>  <span class="term-white">/styles.css</span></div>
+            <div><span class="term-muted">14:19:12</span>  <span class="term-muted">get    </span>  <span class="term-white">/styles.css</span></div>
+            <div><span class="term-muted">14:19:25</span>  <span class="term-green">added  </span>  <span class="term-white">/app.js</span></div>
+          </div>
+        </div>
+
+        <!-- Highlights Grid -->
+        <div class="feature-grid">
+          <div class="minimal-card">
+            <div class="card-header-icon">⚡</div>
+            <div class="card-title">Live Reload</div>
+            <div class="card-desc">Watches your files with Chokidar and pushes WebSocket reload events straight to your open browser tabs.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">📁</div>
+            <div class="card-title">Directory Explorer</div>
+            <div class="card-desc">When no index.html is present, Zappp serves a clean dark-mode file explorer with instant subfolder navigation.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">🛡️</div>
+            <div class="card-title">Secure Paths</div>
+            <div class="card-desc">Directory traversal attempts are blocked using normalized path containment verification.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">🔌</div>
+            <div class="card-title">Smart Reconnect</div>
+            <div class="card-desc">Uses exponential backoff to eliminate infinite reload loops when the server stops, reloading once on restart.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section id="installation" class="content-section">
+        <h2>Installation</h2>
+        <p>Install Zappp globally to use the <code>zappp</code> command anywhere, or add it to your local project:</p>
+
+        <h3>Global Installation (Recommended)</h3>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <div class="code-tabs" data-group="install">
+              <button class="tab-btn active" data-tab="npm">npm</button>
+              <button class="tab-btn" data-tab="pnpm">pnpm</button>
+              <button class="tab-btn" data-tab="yarn">yarn</button>
+              <button class="tab-btn" data-tab="bun">bun</button>
+              <button class="tab-btn" data-tab="npx">npx</button>
+            </div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>npm install -g zappp</code>
+          </div>
+        </div>
+
+        <h3>Local Project Dependency</h3>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <div class="code-tabs" data-group="local">
+              <button class="tab-btn active" data-tab="npm">npm</button>
+              <button class="tab-btn" data-tab="pnpm">pnpm</button>
+              <button class="tab-btn" data-tab="yarn">yarn</button>
+              <button class="tab-btn" data-tab="bun">bun</button>
+            </div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>npm install zappp --save-dev</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Start Section -->
+      <section id="quick-start" class="content-section">
+        <h2>Quick Start</h2>
+        <p>Navigate to your project directory and run:</p>
+
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>cd my-project<br>zappp</code>
+          </div>
+        </div>
+
+        <p>Your server will spin up on <code>http://localhost:3000</code>. Edits to HTML, CSS, JavaScript, or static assets will trigger an automatic browser reload.</p>
+      </section>
+
+      <!-- Usage Guides -->
+      <section id="basic-usage" class="content-section">
+        <h2>Usage Guides</h2>
+
+        <h3 id="serving-directories">Serving Custom Directories</h3>
+        <p>Pass any folder path as an argument to serve that specific directory:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>zappp ./public<br>zappp ./dist<br>zappp ../my-website</code>
+          </div>
+        </div>
+
+        <h3 id="port-and-host">Configuring Port and Host</h3>
+        <p>Change the port with <code>-p</code> and bind to a specific network host with <code>--host</code>:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>zappp -p 8080<br>zappp --host 127.0.0.1 -p 5000</code>
+          </div>
+        </div>
+
+        <h3 id="browser-launch">Auto-Opening Browser</h3>
+        <p>Launch your default browser automatically on startup with <code>-o</code>:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>zappp -o<br>zappp ./dist -p 4000 -o</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLI Options Reference -->
+      <section id="cli-options" class="content-section">
+        <h2>CLI Options Reference</h2>
+        <p>Overview of all flags and options supported by the Zappp CLI:</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Alias</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--port &lt;number&gt;</code></td>
+                <td><code>-p</code></td>
+                <td>Number</td>
+                <td><code>3000</code></td>
+                <td>Port for HTTP and WebSocket server (1–65535).</td>
+              </tr>
+              <tr>
+                <td><code>--host &lt;address&gt;</code></td>
+                <td>—</td>
+                <td>String</td>
+                <td><code>0.0.0.0</code></td>
+                <td>Network interface to bind to (use <code>127.0.0.1</code> for local only).</td>
+              </tr>
+              <tr>
+                <td><code>--open</code></td>
+                <td><code>-o</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Opens default browser on startup.</td>
+              </tr>
+              <tr>
+                <td><code>--no-browser</code></td>
+                <td>—</td>
+                <td>Boolean</td>
+                <td><code>true</code></td>
+                <td>Disables opening the browser.</td>
+              </tr>
+              <tr>
+                <td><code>--version</code></td>
+                <td><code>-v</code></td>
+                <td>Flag</td>
+                <td>—</td>
+                <td>Shows current version and checks npm registry for updates.</td>
+              </tr>
+              <tr>
+                <td><code>--help</code></td>
+                <td><code>-h</code></td>
+                <td>Flag</td>
+                <td>—</td>
+                <td>Displays the CLI help manual.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Interactive Command Playground -->
+      <section id="command-playground" class="content-section">
+        <h2>Interactive Command Generator</h2>
+        <p>Customize options below to generate your tailored Zappp command in real-time:</p>
+
+        <div class="playground-card">
+          <div class="playground-header">
+            <div class="playground-title">Command Builder</div>
+            <div class="playground-desc">Configure your flags and copy your command with one click.</div>
+          </div>
+
+          <div class="playground-form">
+            <div class="form-group">
+              <label class="form-label" for="play-dir">Target Folder</label>
+              <input type="text" id="play-dir" class="form-input" placeholder="./dist or ./public">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="play-port">Port</label>
+              <input type="number" id="play-port" class="form-input" value="3000" min="1" max="65535">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="play-host">Host</label>
+              <input type="text" id="play-host" class="form-input" value="0.0.0.0">
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="play-open">
+                Auto-Open Browser (<code>-o</code>)
+              </label>
+            </div>
+          </div>
+
+          <div class="preview-box">
+            <code class="preview-code" id="play-output">zappp</code>
+            <button class="copy-btn" data-target="play-output">Copy Command</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture & Deep Dives -->
+      <section id="live-reload" class="content-section">
+        <h2>Core Architecture</h2>
+
+        <h3>WebSocket Live Reload</h3>
+        <p>When an HTML file is requested, Zappp injects a lightweight client script before <code>&lt;/body&gt;</code> or <code>&lt;/html&gt;</code>. It connects over WebSocket to the server, and whenever files change, a reload event triggers an instantaneous browser refresh.</p>
+
+        <div class="minimal-callout">
+          <div class="callout-title">Case-Insensitive Injection</div>
+          <div class="callout-body">Whether your markup uses lowercase <code>&lt;/body&gt;</code> or uppercase <code>&lt;/BODY&gt;</code>, Zappp injects accurately at the exact closing tag position.</div>
+        </div>
+
+        <h3 id="smart-reconnect">Smart Reconnect (Exponential Backoff)</h3>
+        <p>When the server stops, Zappp's injected client retries connecting using an exponential backoff curve (1s, 2s, 4s, up to 10s). It stops after 20 attempts, eliminating infinite reload loops.</p>
+
+        <h3 id="directory-listing">Directory Listing UI</h3>
+        <p>If a folder lacks an <code>index.html</code>, Zappp renders a custom dark-mode file explorer with clean forward-slash URLs and instant folder traversal.</p>
+
+        <h3 id="update-checks">Silent Background Update Checks</h3>
+        <p>When you start Zappp, it checks npm in the background with zero lag. When you shut down the server, if a new release exists, you'll see a clean notification alert.</p>
+
+        <h3 id="security">Security & Traversal Prevention</h3>
+        <p>Zappp uses <code>path.relative()</code> containment verification to guarantee that no URL can escape your root directory.</p>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section id="troubleshooting" class="content-section">
+        <h2>Troubleshooting & FAQ</h2>
+
+        <h3>Port Already in Use (EADDRINUSE)</h3>
+        <p>If port 3000 is occupied, Zappp detects it and suggests an alternate port:</p>
+        <div class="code-wrapper">
+          <div class="code-body">
+            <code>error  port 3000 is already in use<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try a different port:  zappp -p 8080</code>
+          </div>
+        </div>
+
+        <h3>Accessing on Mobile / Local Network</h3>
+        <p>Zappp binds to <code>0.0.0.0</code> by default and shows your network URL on boot (e.g. <code>http://192.168.1.110:3000</code>). Open that address on any phone or tablet on the same Wi-Fi to test responsive designs live.</p>
+
+        <h3>Graceful Shutdown in Docker & PM2</h3>
+        <p>Zappp hooks both <code>SIGINT</code> (<kbd>Ctrl+C</kbd>) and <code>SIGTERM</code> to cleanly close watchers and WebSocket connections.</p>
+      </section>
+
+      <!-- License -->
+      <section id="license" class="content-section">
+        <h2>License</h2>
+        <p>Zappp is open source software released under the <a href="https://github.com/iamovi/zappp/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
+      </section>
+
+    </main>
+
+    <!-- Right Table of Contents (Desktop Scrollspy) -->
+    <aside class="docs-toc">
+      <div class="toc-heading">On This Page</div>
+      <ul class="toc-list">
+        <li><a href="#overview" class="toc-link active">Overview</a></li>
+        <li><a href="#installation" class="toc-link">Installation</a></li>
+        <li><a href="#quick-start" class="toc-link">Quick Start</a></li>
+        <li><a href="#basic-usage" class="toc-link">Usage Guides</a></li>
+        <li><a href="#cli-options" class="toc-link">CLI Options</a></li>
+        <li><a href="#command-playground" class="toc-link">Command Builder</a></li>
+        <li><a href="#live-reload" class="toc-link">Architecture</a></li>
+        <li><a href="#troubleshooting" class="toc-link">Troubleshooting</a></li>
+        <li><a href="#license" class="toc-link">License</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- Search Modal Backdrop -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-modal-input" id="search-input" placeholder="Search documentation...">
+      </div>
+      <div class="search-results" id="search-results">
+        <!-- Results rendered dynamically via JavaScript -->
+      </div>
+      <div class="search-footer">
+        <span>Navigate with arrows &middot; Enter to select</span>
+        <span>ESC to close</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Zappp &middot; Released under the <a href="https://github.com/iamovi/zappp/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

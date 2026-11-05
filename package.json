@@ -1,7 +1,7 @@
 {
   "name": "zappp",
-  "version": "1.1.0",
-  "description": "A simple, fast static file server with live reload - VS Code Live Server clone",
+  "version": "1.1.1",
+  "description": "A simple, fast static file server with live reload and more.",
   "main": "src/index.js",
   "bin": {
     "zappp": "./bin/zappp.js"
@@ -33,5 +33,5 @@
   "bugs": {
     "url": "https://github.com/iamovi/zappp/issues"
   },
-  "homepage": "https://github.com/iamovi/zappp#readme"
+  "homepage": "https://iamovi.github.io/zappp"
 }
