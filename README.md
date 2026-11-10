@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/iamovi/zappp/refs/heads/main/main.png" width="100">
 
-**Zappp** is a fast, modern static file server with live reload — a clean, actively maintained alternative to `live-server`.
+**Zappp** is a fast, modern static file server with live reload, CSS hot-swap, SPA support, and on-the-fly compression.
 
 *Version: 1.2.0*
 
