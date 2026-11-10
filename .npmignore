@@ -8,7 +8,7 @@ test/
 *.swp
 *.swo
 
-# Documentation
+# Documentation site
 docs/
 
 # Git
@@ -24,5 +24,9 @@ docs/
 Thumbs.db
 npm-debug.log*
 
+# Root demo files (not needed in package)
 index.html
+main.png
+favicon.ico
+favicon.png
 

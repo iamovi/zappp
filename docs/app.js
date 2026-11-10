@@ -160,7 +160,11 @@ function initCommandPlayground() {
   const dirInput = document.getElementById('play-dir');
   const portInput = document.getElementById('play-port');
   const hostInput = document.getElementById('play-host');
+  const waitInput = document.getElementById('play-wait');
   const openCheckbox = document.getElementById('play-open');
+  const spaCheckbox = document.getElementById('play-spa');
+  const corsCheckbox = document.getElementById('play-cors');
+  const verboseCheckbox = document.getElementById('play-verbose');
   const outputCode = document.getElementById('play-output');
 
   if (!outputCode) return;
@@ -183,20 +187,37 @@ function initCommandPlayground() {
       parts.push(`--host ${host}`);
     }
 
+    const wait = waitInput ? waitInput.value.trim() : '';
+    if (wait && wait !== '100') {
+      parts.push(`-w ${wait}`);
+    }
+
+    if (spaCheckbox && spaCheckbox.checked) {
+      parts.push('--spa');
+    }
+
+    if (corsCheckbox && corsCheckbox.checked) {
+      parts.push('--cors');
+    }
+
     if (openCheckbox && openCheckbox.checked) {
       parts.push('-o');
+    }
+
+    if (verboseCheckbox && verboseCheckbox.checked) {
+      parts.push('-V');
     }
 
     outputCode.textContent = parts.join(' ');
   }
 
-  [dirInput, portInput, hostInput].forEach(el => {
+  [dirInput, portInput, hostInput, waitInput].forEach(el => {
     if (el) el.addEventListener('input', updateCommand);
   });
 
-  if (openCheckbox) {
-    openCheckbox.addEventListener('change', updateCommand);
-  }
+  [openCheckbox, spaCheckbox, corsCheckbox, verboseCheckbox].forEach(el => {
+    if (el) el.addEventListener('change', updateCommand);
+  });
 
   updateCommand();
 }

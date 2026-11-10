@@ -1,7 +1,7 @@
 {
   "name": "zappp",
-  "version": "1.1.1",
-  "description": "A simple, fast static file server with live reload and more.",
+  "version": "1.2.0",
+  "description": "Fast static file server with live reload, CSS hot-swap, SPA support, gzip, and range requests.",
   "main": "src/index.js",
   "bin": {
     "zappp": "./bin/zappp.js"
@@ -14,7 +14,12 @@
     "static-server",
     "development-server",
     "live-reload",
-    "hot-reload"
+    "hot-reload",
+    "css-hot-swap",
+    "spa",
+    "gzip",
+    "dev-server",
+    "file-server"
   ],
   "author": "Hasan Ovi",
   "license": "MIT",

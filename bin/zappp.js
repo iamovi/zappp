@@ -14,15 +14,33 @@ const A = {
   red:    '\x1b[31m',
   green:  '\x1b[32m',
   yellow: '\x1b[33m',
-  cyan:   '\x1b[36m',
+  cyan:   '\x1b[92m',  // neon green — matches logo color theme
   white:  '\x1b[97m',
   gray:   '\x1b[90m',
 };
 const paint = (codes, str) => `${codes}${str}${A.reset}`;
 
+// ─── Config file loader (.zappprc.json in cwd) ────────────────────────────────
+// CLI flags always override config file values.
+function loadConfig() {
+  const configPath = path.join(process.cwd(), '.zappprc.json');
+  if (!fs.existsSync(configPath)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  } catch (e) {
+    console.error(
+      '\n  ' + paint(A.yellow, 'warn') +
+      `  could not parse .zappprc.json: ${e.message}\n`
+    );
+    return {};
+  }
+}
+
 // ─── Argument parsing ──────────────────────────────────────────────────────────
-const args    = process.argv.slice(2);
-const options = {};
+// Start with config file defaults, then let CLI flags override.
+const fileConfig = loadConfig();
+const args       = process.argv.slice(2);
+const options    = { ...fileConfig };
 
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
@@ -52,6 +70,50 @@ for (let i = 0; i < args.length; i++) {
 
   } else if (arg === '--no-browser') {
     options.open = false;
+
+  } else if (arg === '--spa') {
+    // SPA mode: serve index.html for all 404s (React, Vue, Angular, Svelte, etc.)
+    options.spa = true;
+
+  } else if (arg === '--entry-file' || arg === '-e') {
+    // Custom SPA fallback file (implies SPA mode)
+    options.entryFile = args[++i];
+
+  } else if (arg === '--wait' || arg === '-w') {
+    // Debounce delay in ms before triggering a reload (default: 100)
+    const waitValue = parseInt(args[++i], 10);
+    if (isNaN(waitValue) || waitValue < 0) {
+      console.error(
+        '\n  ' + paint(A.red + A.bold, 'error') +
+        `  invalid --wait value "${args[i]}"  ·  must be a non-negative number\n`
+      );
+      process.exit(1);
+    }
+    options.wait = waitValue;
+
+  } else if (arg === '--cors') {
+    // Add Access-Control-Allow-Origin: * to all responses
+    options.cors = true;
+
+  } else if (arg === '--ignore' || arg === '-i') {
+    // Comma-separated glob patterns to exclude from file watching
+    options.ignore = args[++i];
+
+  } else if (arg === '--quiet' || arg === '-q') {
+    // Suppress all log output (useful in CI or scripted setups)
+    options.quiet = true;
+
+  } else if (arg === '--verbose' || arg === '-V') {
+    // Log every request with status code and response time
+    options.verbose = true;
+
+  } else if (arg === '--gzip') {
+    // Enable gzip compression for text responses (on by default)
+    options.gzip = true;
+
+  } else if (arg === '--no-gzip') {
+    // Disable gzip compression
+    options.gzip = false;
 
   } else if (arg === '--help' || arg === '-h') {
     printHelp();
@@ -124,7 +186,7 @@ function checkForUpdates(current) {
 
 // ─── Help text ────────────────────────────────────────────────────────────────
 function printHelp() {
-  const W  = 48;
+  const W  = 56;
   const ln = paint(A.cyan + A.dim, '─'.repeat(W));
 
   console.log(`
@@ -135,20 +197,43 @@ function printHelp() {
   ${paint(A.white, 'usage')}
     zappp [directory] [options]
 
-  ${paint(A.white, 'options')}
-    ${paint(A.cyan, '-p, --port')} ${paint(A.gray, '<n>')}    port to listen on       ${paint(A.gray, '(default: 3000)')}
-    ${paint(A.cyan, '    --host')} ${paint(A.gray, '<h>')}    host to bind to          ${paint(A.gray, '(default: 0.0.0.0)')}
-    ${paint(A.cyan, '-o, --open')}         open browser on start
-    ${paint(A.cyan, '    --no-browser')}   do not open browser
-    ${paint(A.cyan, '-v, --version')}      show version + check for updates
-    ${paint(A.cyan, '-h, --help')}         show this help message
+  ${paint(A.white, 'server')}
+    ${paint(A.cyan, '-p, --port')} ${paint(A.gray, '<n>')}         port to listen on          ${paint(A.gray, '(default: 3000)')}
+    ${paint(A.cyan, '    --host')} ${paint(A.gray, '<h>')}         host to bind to             ${paint(A.gray, '(default: 0.0.0.0)')}
+    ${paint(A.cyan, '-o, --open')}              open browser on start
+    ${paint(A.cyan, '    --no-browser')}        do not open browser
+    ${paint(A.cyan, '    --cors')}              enable CORS ${paint(A.gray, '(Access-Control-Allow-Origin: *)')}
+
+  ${paint(A.white, 'reload')}
+    ${paint(A.cyan, '-w, --wait')} ${paint(A.gray, '<ms>')}        debounce before reload      ${paint(A.gray, '(default: 100)')}
+    ${paint(A.cyan, '-i, --ignore')} ${paint(A.gray, '<globs>')}   comma-separated watch ignore patterns
+
+  ${paint(A.white, 'spa')}
+    ${paint(A.cyan, '    --spa')}               serve index.html for all 404s
+    ${paint(A.cyan, '-e, --entry-file')} ${paint(A.gray, '<f>')}  custom SPA fallback file
+
+  ${paint(A.white, 'output')}
+    ${paint(A.cyan, '-q, --quiet')}             suppress all log output
+    ${paint(A.cyan, '-V, --verbose')}           log every request with status + timing
+    ${paint(A.cyan, '    --gzip')}              enable gzip compression  ${paint(A.gray, '(on by default)')}
+    ${paint(A.cyan, '    --no-gzip')}           disable gzip compression
+
+  ${paint(A.white, 'info')}
+    ${paint(A.cyan, '-v, --version')}           show version + check for updates
+    ${paint(A.cyan, '-h, --help')}              show this help message
+
+  ${paint(A.white, 'config')}
+    ${paint(A.gray, 'create')} ${paint(A.dim, '.zappprc.json')} ${paint(A.gray, 'in your project root to persist options:')}
+    ${paint(A.dim, '{ "port": 8080, "spa": true, "cors": true, "gzip": true }')}
 
   ${paint(A.white, 'examples')}
-    zappp                       serve current directory on port 3000
-    zappp ./public              serve a specific directory
-    zappp -p 8080 -o            custom port and open browser
-    zappp ./dist -p 5000 -o     serve dist folder on port 5000
-    zappp --host 127.0.0.1      bind to localhost only
+    zappp                              serve current directory on port 3000
+    zappp ./public -p 8080 -o          serve folder, custom port, open browser
+    zappp --spa                        SPA mode for React/Vue/Angular/Svelte
+    zappp --cors --gzip                CORS + gzip compression enabled
+    zappp -V                           verbose request log with status codes
+    zappp -w 300 -i "scss/**,*.map"    debounce 300ms, ignore scss folder
+    zappp --host 127.0.0.1             bind to localhost only
   ${ln}
 `);
 }
@@ -156,10 +241,11 @@ function printHelp() {
 // ─── Boot server (skip if --version was requested) ───────────────────────────
 if (!args.includes('--version') && !args.includes('-v')) {
   // Apply defaults
-  if (!options.root)                   options.root = process.cwd();
-  if (!options.port)                   options.port = 3000;
-  if (!options.host)                   options.host = '0.0.0.0';
-  if (options.open === undefined)      options.open = false;
+  if (!options.root)              options.root = process.cwd();
+  if (!options.port)              options.port = 3000;
+  if (!options.host)              options.host = '0.0.0.0';
+  if (options.open === undefined) options.open = false;
+  if (options.gzip === undefined) options.gzip = true;  // gzip on by default
 
   // Validate root directory exists before starting
   if (!fs.existsSync(options.root) || !fs.statSync(options.root).isDirectory()) {

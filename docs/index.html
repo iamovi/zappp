@@ -29,7 +29,7 @@
         <img src="main.png" alt="Zappp" class="brand-icon-img">
         <span>zappp<span class="accent">⚡</span></span>
       </a>
-      <span class="brand-badge">v1.1.1</span>
+      <span class="brand-badge">v1.2.0</span>
     </div>
 
     <div class="header-actions">
@@ -95,6 +95,9 @@
           <li><a href="#serving-directories" class="sidebar-link">Custom Directory</a></li>
           <li><a href="#port-and-host" class="sidebar-link">Port & Host</a></li>
           <li><a href="#browser-launch" class="sidebar-link">Auto-Open Browser</a></li>
+          <li><a href="#spa-mode" class="sidebar-link">SPA Mode (React/Vue)</a></li>
+          <li><a href="#cors-and-gzip" class="sidebar-link">CORS & Gzip</a></li>
+          <li><a href="#config-file" class="sidebar-link">Configuration File</a></li>
         </ul>
       </div>
 
@@ -110,6 +113,8 @@
         <div class="sidebar-heading">Architecture</div>
         <ul class="sidebar-nav">
           <li><a href="#live-reload" class="sidebar-link">WebSocket Reload</a></li>
+          <li><a href="#css-hot-swap" class="sidebar-link">CSS Hot-Swap</a></li>
+          <li><a href="#gzip-and-range" class="sidebar-link">Gzip & Range Requests</a></li>
           <li><a href="#smart-reconnect" class="sidebar-link">Smart Reconnect</a></li>
           <li><a href="#directory-listing" class="sidebar-link">Directory Listing</a></li>
           <li><a href="#update-checks" class="sidebar-link">Background Updates</a></li>
@@ -167,19 +172,21 @@
             <span class="terminal-badge">zappp terminal</span>
           </div>
           <div class="terminal-code">
-            <div><span class="term-accent">zappp</span>  <span class="term-muted">v1.1.0</span></div>
+            <div><span class="term-accent">zappp</span>  <span class="term-muted">v1.2.0</span></div>
             <div class="term-muted">────────────────────────────────────────────────</div>
             <br>
             <div><span class="term-muted">local   </span>  <span class="term-white">http://localhost:3000</span></div>
             <div><span class="term-muted">network </span>  <span class="term-white">http://192.168.1.45:3000</span></div>
             <div><span class="term-muted">root    </span>  <span class="term-muted">./public</span></div>
+            <div><span class="term-muted">spa     </span>  <span class="term-muted">index.html</span></div>
+            <div><span class="term-muted">cors    </span>  <span class="term-accent">enabled</span></div>
+            <div><span class="term-muted">gzip    </span>  <span class="term-accent">enabled</span></div>
             <br>
-            <div><span class="term-muted">ready in 12ms  ·  watching for changes  ·  ctrl+c to stop</span></div>
+            <div><span class="term-muted">ready in 9ms  ·  watching for changes  ·  ctrl+c to stop</span></div>
             <div class="term-muted">────────────────────────────────────────────────</div>
             <br>
             <div><span class="term-muted">14:19:03</span>  <span class="term-muted">get    </span>  <span class="term-white">/index.html</span></div>
             <div><span class="term-muted">14:19:12</span>  <span class="term-accent">changed</span>  <span class="term-white">/styles.css</span></div>
-            <div><span class="term-muted">14:19:12</span>  <span class="term-muted">get    </span>  <span class="term-white">/styles.css</span></div>
             <div><span class="term-muted">14:19:25</span>  <span class="term-green">added  </span>  <span class="term-white">/app.js</span></div>
           </div>
         </div>
@@ -187,27 +194,39 @@
         <!-- Highlights Grid -->
         <div class="feature-grid">
           <div class="minimal-card">
+            <div class="card-header-icon">🎨</div>
+            <div class="card-title">CSS Hot-Swap</div>
+            <div class="card-desc">CSS modifications inject instantly via targeted WebSocket swap without refreshing the page or losing state.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">🧭</div>
+            <div class="card-title">SPA Fallback</div>
+            <div class="card-desc">Seamless React, Vue, Angular, and Svelte support with <code>--spa</code> serving <code>index.html</code> on 404s.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">🗜️</div>
+            <div class="card-title">Gzip Compression</div>
+            <div class="card-desc">Compresses HTML, CSS, JS, and JSON automatically on the fly using Node's native zlib engine.</div>
+          </div>
+
+          <div class="minimal-card">
+            <div class="card-header-icon">📺</div>
+            <div class="card-title">Range Requests</div>
+            <div class="card-desc">Supports <code>206 Partial Content</code> out of the box, allowing smooth seeking and scrubbing in video & audio players.</div>
+          </div>
+
+          <div class="minimal-card">
             <div class="card-header-icon">⚡</div>
-            <div class="card-title">Live Reload</div>
-            <div class="card-desc">Watches your files with Chokidar and pushes WebSocket reload events straight to your open browser tabs.</div>
+            <div class="card-title">Debounced Reload</div>
+            <div class="card-desc">Aggregates rapid file saves into a single refresh with configurable delay via <code>--wait</code>.</div>
           </div>
 
           <div class="minimal-card">
-            <div class="card-header-icon">📁</div>
-            <div class="card-title">Directory Explorer</div>
-            <div class="card-desc">When no index.html is present, Zappp serves a clean dark-mode file explorer with instant subfolder navigation.</div>
-          </div>
-
-          <div class="minimal-card">
-            <div class="card-header-icon">🛡️</div>
-            <div class="card-title">Secure Paths</div>
-            <div class="card-desc">Directory traversal attempts are blocked using normalized path containment verification.</div>
-          </div>
-
-          <div class="minimal-card">
-            <div class="card-header-icon">🔌</div>
-            <div class="card-title">Smart Reconnect</div>
-            <div class="card-desc">Uses exponential backoff to eliminate infinite reload loops when the server stops, reloading once on restart.</div>
+            <div class="card-header-icon">📄</div>
+            <div class="card-title">Config File</div>
+            <div class="card-desc">Persist your project preferences in <code>.zappprc.json</code> so your team never has to re-type CLI flags.</div>
           </div>
         </div>
       </section>
@@ -308,6 +327,42 @@
             <code>zappp -o<br>zappp ./dist -p 4000 -o</code>
           </div>
         </div>
+
+        <h3 id="spa-mode">Single Page Application (SPA) Support</h3>
+        <p>For modern frontend routers like React Router, Vue Router, Angular, or SvelteKit, missing sub-routes must return <code>index.html</code> instead of a 404 error:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>zappp --spa<br>zappp ./dist --spa -p 5000<br>zappp --entry-file custom-index.html</code>
+          </div>
+        </div>
+
+        <h3 id="cors-and-gzip">CORS Headers & Gzip Compression</h3>
+        <p>Enable Cross-Origin Resource Sharing with <code>--cors</code> for cross-port API calls and web workers. Zappp also enables native Gzip compression by default on all text assets:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>Terminal</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>zappp --cors<br>zappp --no-gzip<br>zappp -V # verbose logs showing compression and byte-ranges</code>
+          </div>
+        </div>
+
+        <h3 id="config-file">Persistent Configuration File (.zappprc.json)</h3>
+        <p>Never type flags again. Place a <code>.zappprc.json</code> file in your project root to lock in your preferred settings:</p>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <span>.zappprc.json</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="code-body">
+            <code>{<br>&nbsp;&nbsp;"port": 8080,<br>&nbsp;&nbsp;"spa": true,<br>&nbsp;&nbsp;"cors": true,<br>&nbsp;&nbsp;"wait": 200,<br>&nbsp;&nbsp;"ignore": "scss/**,*.map",<br>&nbsp;&nbsp;"gzip": true<br>}</code>
+          </div>
+        </div>
       </section>
 
       <!-- CLI Options Reference -->
@@ -356,6 +411,69 @@
                 <td>Disables opening the browser.</td>
               </tr>
               <tr>
+                <td><code>--spa</code></td>
+                <td>—</td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Single Page App mode — serves <code>index.html</code> for all 404s.</td>
+              </tr>
+              <tr>
+                <td><code>--entry-file &lt;file&gt;</code></td>
+                <td><code>-e</code></td>
+                <td>String</td>
+                <td>—</td>
+                <td>Custom entry fallback file for SPA routing.</td>
+              </tr>
+              <tr>
+                <td><code>--wait &lt;ms&gt;</code></td>
+                <td><code>-w</code></td>
+                <td>Number</td>
+                <td><code>100</code></td>
+                <td>Debounce interval in ms to aggregate rapid file saves.</td>
+              </tr>
+              <tr>
+                <td><code>--cors</code></td>
+                <td>—</td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Enables CORS headers (<code>Access-Control-Allow-Origin: *</code>).</td>
+              </tr>
+              <tr>
+                <td><code>--ignore &lt;globs&gt;</code></td>
+                <td><code>-i</code></td>
+                <td>String</td>
+                <td>—</td>
+                <td>Comma-separated glob patterns to exclude from watch.</td>
+              </tr>
+              <tr>
+                <td><code>--gzip</code></td>
+                <td>—</td>
+                <td>Boolean</td>
+                <td><code>true</code></td>
+                <td>Enables Gzip compression for text responses (default on).</td>
+              </tr>
+              <tr>
+                <td><code>--no-gzip</code></td>
+                <td>—</td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Disables Gzip compression.</td>
+              </tr>
+              <tr>
+                <td><code>--verbose</code></td>
+                <td><code>-V</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Logs every HTTP request with status code, response time & flags.</td>
+              </tr>
+              <tr>
+                <td><code>--quiet</code></td>
+                <td><code>-q</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Suppresses all console log outputs (ideal for CI).</td>
+              </tr>
+              <tr>
                 <td><code>--version</code></td>
                 <td><code>-v</code></td>
                 <td>Flag</td>
@@ -402,9 +520,35 @@
             </div>
 
             <div class="form-group">
+              <label class="form-label" for="play-wait">Wait (Debounce ms)</label>
+              <input type="number" id="play-wait" class="form-input" placeholder="100" min="0">
+            </div>
+
+            <div class="form-group">
               <label class="form-checkbox-label">
                 <input type="checkbox" id="play-open">
-                Auto-Open Browser (<code>-o</code>)
+                Auto-Open (<code>-o</code>)
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="play-spa">
+                SPA Mode (<code>--spa</code>)
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="play-cors">
+                CORS (<code>--cors</code>)
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="play-verbose">
+                Verbose (<code>-V</code>)
               </label>
             </div>
           </div>
@@ -427,6 +571,12 @@
           <div class="callout-title">Case-Insensitive Injection</div>
           <div class="callout-body">Whether your markup uses lowercase <code>&lt;/body&gt;</code> or uppercase <code>&lt;/BODY&gt;</code>, Zappp injects accurately at the exact closing tag position.</div>
         </div>
+
+        <h3 id="css-hot-swap">CSS Hot-Swap (Zero-Flicker Style Refresh)</h3>
+        <p>Unlike traditional servers that force a destructive full-page reload on every style edit, Zappp tracks stylesheet modifications separately. When a <code>.css</code> file changes, Zappp transmits a targeted <code>{ type: "css", href }</code> message over WebSocket. The client script finds matching <code>&lt;link rel="stylesheet"&gt;</code> tags and swaps them instantly with a timestamped URL query, preserving scroll position and input state.</p>
+
+        <h3 id="gzip-and-range">On-The-Fly Gzip & Range Requests</h3>
+        <p>All text assets (HTML, CSS, JS, JSON, SVG, WASM) are compressed using Node's built-in <code>zlib</code> engine whenever the browser provides an <code>Accept-Encoding: gzip</code> header. For large video and audio media files, Zappp handles HTTP <code>Range</code> headers and replies with <code>206 Partial Content</code>, streaming byte ranges for fast, lag-free seeking and scrubbing.</p>
 
         <h3 id="smart-reconnect">Smart Reconnect (Exponential Backoff)</h3>
         <p>When the server stops, Zappp's injected client retries connecting using an exponential backoff curve (1s, 2s, 4s, up to 10s). It stops after 20 attempts, eliminating infinite reload loops.</p>
@@ -476,6 +626,9 @@
         <li><a href="#installation" class="toc-link">Installation</a></li>
         <li><a href="#quick-start" class="toc-link">Quick Start</a></li>
         <li><a href="#basic-usage" class="toc-link">Usage Guides</a></li>
+        <li><a href="#spa-mode" class="toc-link">SPA Mode</a></li>
+        <li><a href="#cors-and-gzip" class="toc-link">CORS & Gzip</a></li>
+        <li><a href="#config-file" class="toc-link">Configuration File</a></li>
         <li><a href="#cli-options" class="toc-link">CLI Options</a></li>
         <li><a href="#command-playground" class="toc-link">Command Builder</a></li>
         <li><a href="#live-reload" class="toc-link">Architecture</a></li>
